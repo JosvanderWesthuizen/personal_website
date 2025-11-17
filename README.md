@@ -148,10 +148,6 @@ Then open `http://localhost:8000` in your browser.
 - Safari (latest)
 - Mobile browsers
 
-## Design Credits
-
-Design inspired by [Jesse Zhang's website](https://jessezhang.org).
-
 ## License
 
 Feel free to use this template for your own personal website. Attribution appreciated but not required.
