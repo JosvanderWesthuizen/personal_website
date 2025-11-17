@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gmail: Controlling the day upon which you receive emails from a specific sender - Jos van der Westhuizen</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .blog-post-container {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .post-header {
+            margin-bottom: 3rem;
+        }
+
+        .post-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .post-meta {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .post-content {
+            font-size: 1.125rem;
+            line-height: 1.8;
+        }
+
+        .post-content h2 {
+            font-size: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .post-content h3 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .post-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .post-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .post-content code {
+            background-color: rgba(135, 131, 120, 0.15);
+            color: #eb5757;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="blog-post-container">
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+
+        <article class="post-header">
+            <h1 class="post-title">Gmail: Controlling the day upon which you receive emails from a specific sender</h1>
+            <div class="post-meta">7 August 2019</div>
+        </article>
+
+        <div class="post-content">
+            <p>
+                I've recently discovered how to configure Gmail such that certain emails reach my inbox on a specific day and I thought this trick might be useful to others. Effectively, new emails from a sender can be snoozed automatically until a time of your choosing.
+            </p>
+
+            <p>
+                As an example, let's assume you've created a Google Scholar email alert for new papers by Yoshua Bengio. These email alerts reach your inbox at an arbitrary time which you cannot specify. The only time you want to look at these emails is on a Saturday and in the meantime, they clutter your inbox. Your options are to ignore them or to manually snooze them until Saturday (extra clicks). The solution proposed here automatically snoozes these emails until Saturday as soon as Google Scholar sends them to you. Another reason you might want to automatically snooze emails is to be able to save time by batch-processing certain emails on a specific day.
+            </p>
+
+            <p>
+                To implement the solution, two steps are required: 1) inbox labels have to be generated and 2) a filter has to be created for archiving and labelling incoming mail.
+            </p>
+
+            <h3>1) Snooze Labels</h3>
+
+            <p>
+                To get started, go to <a href="https://script.google.com/d/1RRUSvh7RXJibklE_-4PBcAL7_dHaFp1jEfR1DJCpo1M-64aoAbk1tI_M/edit?usp=sharing" target="_blank">this Google Apps Script</a>. On the Code.gs page select <strong>Run &gt; Run function &gt; GmailLabelSetup</strong>.
+            </p>
+
+            <img src="../../images/blog-posts/gmail-snooze/image1.png" alt="Run function menu">
+
+            <p>
+                You'll be prompted to authorize the script as shown below. Select <strong>Review Permissions</strong> and allow access. Alternatively, follow the <a href="https://www.axllent.org/docs/view/gmail-snooze-script/" target="_blank">excellent instructions</a> by Ralph Slooten to create your own Google Apps Script, or copy my code into your own script.
+            </p>
+
+            <img src="../../images/blog-posts/gmail-snooze/image2.png" alt="Authorization prompt">
+
+            <p>
+                This app hasn't been verified yet, so you'll have to click <strong>Advanced</strong> on the following screen and follow the links to allow the script.
+            </p>
+
+            <img src="../../images/blog-posts/gmail-snooze/image3.png" alt="Advanced authorization screen">
+
+            <p>
+                Once the function has completed, you'll see a new set of labels in your Gmail as shown below:
+            </p>
+
+            <img src="../../images/blog-posts/gmail-snooze/image4.png" alt="Gmail labels showing snooze options">
+
+            <p>
+                Note: I haven't tried snoozing until a specific time of day, but it is possible with some changes to the code.
+            </p>
+
+            <h3>2) Inbox Filters</h3>
+
+            <p>
+                The final step is to navigate to the gear icon (top right) in your Gmail, then select <strong>Settings &gt; Filters and Blocked Addresses &gt; Create a new filter</strong>. In the "From" field, fill in the sender address that you want to snooze. If you want to snooze multiple senders, use the pipe symbol "|" as shown below:
+            </p>
+
+            <img src="../../images/blog-posts/gmail-snooze/image5.png" alt="Gmail filter creation with multiple senders">
+
+            <p>
+                Click <strong>Continue</strong> and select <strong>Skip the Inbox</strong> and <strong>Apply the label</strong> to choose the day that you want to receive emails from the above-specified sender.
+            </p>
+
+            <img src="../../images/blog-posts/gmail-snooze/image6.png" alt="Filter options with skip inbox and apply label">
+
+            <p>
+                And voila! Emails from the specified senders will now appear in your inbox on the specified day. I hope this helps you save some time and email clutter.
+            </p>
+        </div>
+    </div>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

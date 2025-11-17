@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIY Radio Alarm for Your Mac - Jos van der Westhuizen</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .blog-post-container {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .post-header {
+            margin-bottom: 3rem;
+        }
+
+        .post-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .post-meta {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .post-content {
+            font-size: 1.125rem;
+            line-height: 1.8;
+        }
+
+        .post-content h2 {
+            font-size: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .post-content h3 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .post-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 1.5rem;
+            margin-left: 2rem;
+        }
+
+        .post-content li {
+            margin-bottom: 0.75rem;
+        }
+
+        .post-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .post-content pre {
+            background-color: rgba(135, 131, 120, 0.15);
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .post-content code {
+            background-color: rgba(135, 131, 120, 0.15);
+            color: #eb5757;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="blog-post-container">
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+
+        <article class="post-header">
+            <h1 class="post-title">DIY Radio Alarm for Your Mac</h1>
+            <div class="post-meta">11 March 2020</div>
+        </article>
+
+        <div class="post-content">
+            <img src="../../images/blog-posts/mac-radio-alarm/featured.jpg" alt="Alarm clock on bedside table">
+
+            <p>
+                I've always liked waking up to the radio and having it play while I get ready for the day. A gentle wakeup with some background chatter starts the day much better than a boisterous intruding repetitive alarm. After getting too annoyed with my phone alarm, I spent some time getting my Mac to wake me up with the radio. You could probably install an app to start the radio on your phone, but I prefer Mac's sound quality and the fact that it's relatively stationary in some part of the house. Hopefully, this post will save time for anyone interested in waking up to the radio on their Mac.
+            </p>
+
+            <p>
+                What follows is a step-by-step process to get your Mac to wake up at a specified time and automatically start a pre-specified radio station in Chrome as long as your Mac is plugged in and the lid is open. Prerequisites are that you know how to run commands from the Terminal and that you have Chrome installed.
+            </p>
+
+            <p>Some warnings before you dive in too deep:</p>
+
+            <ul>
+                <li>I haven't determined how to dynamically adjust the volume on wakeup, so you have to set the volume before going to bed.</li>
+                <li>It can take quite a lot of searching to find a valid streaming URL for some radio stations.</li>
+            </ul>
+
+            <p>And without further adieu, we'll get started by automatically waking up your Mac.</p>
+
+            <h3>1. Trigger automatic wakeup</h3>
+
+            <p>
+                Use Spotlight (<code>CMD + Space</code>) to enter the <code>Energy Saver</code> pane. In the bottom right select <code>Schedule</code> and set your Mac to wake up whenever you please.
+            </p>
+
+            <img src="../../images/blog-posts/mac-radio-alarm/image1.png" alt="Energy Saver schedule settings">
+
+            <p>
+                Note: Once or twice my Mac has woken up regardless of being unplugged. So by the end of this, you might have a Mac that wakes up spontaneously.
+            </p>
+
+            <p>After waking up Chrome has to be launched automatically.</p>
+
+            <h3>2. Set up scripts to automatically launch Chrome</h3>
+
+            <p>
+                Download <a href="https://www.bernhard-baehr.de/sleepwatcher_2.2.1.tgz" target="_blank">SleepWatcher 2.2.1</a> (more info <a href="https://www.bernhard-baehr.de/" target="_blank">here</a>.) and extract SleepWatcher into any folder; for this example, we'll use the Home directory. Once extracted, install SleepWatcher by running the 3 commands below from your Terminal.
+            </p>
+
+            <pre>sudo mkdir -p /user/local/sbin /user/local/share/man/man8
+sudo cp ~/sleepwatcher_2.2.1/sleepwatcher /usr/local/sbin
+sudo cp ~/sleepwatcher_2.2.1/sleepwatcher.8 \
+  /usr/local/share/man/man8</pre>
+
+            <p>In your Home directory create a filed called <code>.wakeup</code> containing the following:</p>
+
+            <pre>#!/usr/bin/env bash
+radio_url=http://c4.prod.playlists.ihrhls.com/305/playlist.m3u8
+open -a "Google Chrome" $radio_url</pre>
+
+            <p>
+                This bash script will open your Chrome browser and launch the online radio station specified by <code>radio_url</code>. Make the file executable such that SleepWatcher can run it.
+            </p>
+
+            <pre>sudo chmod +x ~/.wakeup</pre>
+
+            <p>
+                The following command will put your Mac to sleep and test that the wakeup script works. Run the command and wake up your Mac after a few seconds.
+            </p>
+
+            <pre>/usr/local/sbin/sleepwatcher --verbose --wakeup ~/.wakeup &amp; pmset sleepnow</pre>
+
+            <p>If it worked, the next logical step is to be able to decide what radio station you want to listen to.</p>
+
+            <h3>3. Get the streaming URL of your favourite radio station</h3>
+
+            <p>
+                The trick here is to find a streaming URL that automatically starts playing the audio when you navigate to it. E.g., clicking on the link below will immediately start playing Capital FM London.<br>
+                <a href="https://media-ssl.musicradio.com/Capital" target="_blank">https://media-ssl.musicradio.com/Capital</a>
+            </p>
+
+            <p>
+                The general procedure is to find the streaming website of your radio station, inspect the page source, and search for "stream" to find a few candidate URLs to test.
+            </p>
+
+            <p>
+                As an example, get the streaming URL for WILD 94.9 by going to the radio station's <a href="https://www.iheart.com/live/wild-949-305/?pname=kyld-fm&campid=play_bar&cid=index.html" target="_blank">live streaming website</a>. Right-click anywhere and select <code>View Page Source</code>; this will open a new tab filled with Html code. Press <code>CMD + f</code> to search for the phrase "stream" and continue until you start seeing URLs. Copy a URL that looks like it could be the streaming URL and open it in a new tab. Try this until you find a URL that automatically starts playing the audio. For this example, the first streaming URL works (see image below), but you'll have to install a plugin first. URLs ending with <code>.m3u8</code> are by default not played automatically in Chrome and installing the <a href="https://chrome.google.com/webstore/detail/play-hls-m3u8/ckblfoghkjhaclegefojbgllenffajdc?hl=en" target="_blank">Play HLS M3u8</a> Chrome extension will enable this behaviour.
+            </p>
+
+            <img src="../../images/blog-posts/mac-radio-alarm/image2.png" alt="Example of streaming URL in page source">
+
+            <p>
+                After you've added your own <code>radio_url</code> to the <code>.wakeup</code> script, run the testing sequence described in step <strong>2</strong> again.
+            </p>
+
+            <p>
+                Attentive readers would've noticed that the radio will start playing every time the Mac wakes up. It took me a few awkward radio alarms in the middle of meetings and flights to realize just how suboptimal this is… As a solution, we'll specify a permissible alarm time frame.
+            </p>
+
+            <h3>4. Set a wakeup time frame</h3>
+
+            <p>To prevent the radio from starting at any time, we update the <code>.wakeup</code> script to contain the following:</p>
+
+            <pre>#!/usr/bin/env bash
+radio_url=http://c4.prod.playlists.ihrhls.com/305/playlist.m3u8
+curtime=$(date +%H:%M)
+if [[ "$curtime" &gt; "06:00" ]] &amp;&amp; [[ "$curtime" &lt; "08:30" ]]; then
+    open -a "Google Chrome" $radio_url
+fi</pre>
+
+            <p>
+                Consequently, the radio will only start playing if your Mac was woken between 6 am and 8:30 am. You can change the time frame to anything that suits you, but be sure to allow 1 or 2 minutes after the actual wake up event for the script to execute. (Note: If you try to test the new script, it will only work if you are in the specified time frame. You might also have a few of these wakeup scripts running in the background after testing — restart your computer to clear these.)
+            </p>
+
+            <p>
+                Another nice-to-have created by this system is a one-press button to switch on the radio when you wake up too early. I've heard that many people wake up before their alarm sounds and if this happens to you, you can start your radio earlier by pressing any button on your sleeping Mac.
+            </p>
+
+            <p>
+                And that's pretty much it. I hope you get some quality morning radio as a result of this trick. Thanks for reading!
+            </p>
+
+            <p>
+                <em>It really sucks when a guide doesn't work out-of-the-box, so please let me know if you run into any problems. Feedback, tips, and corrections are appreciated.</em>
+            </p>
+
+            <p><strong>Streaming URLs I've used:</strong></p>
+
+            <pre>Capital FM:    https://media-ssl.musicradio.com/Capital
+WILD 94.9:     http://c4.prod.playlists.ihrhls.com/305/playlist.m3u8
+102.7 KIIS-FM: http://c2.prod.playlists.ihrhls.com/185/playlist.m3u8
+ALT 98.7:      http://c2.prod.playlists.ihrhls.com/201/playlist.m3u8</pre>
+
+            <p>
+                Note: Media links are handled differently among browsers; try using a different browser if Chrome doesn't work for your radio station.
+            </p>
+        </div>
+    </div>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

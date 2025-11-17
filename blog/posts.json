@@ -5,7 +5,7 @@
         "description": "Most advice is too generic to be helpful to you. Rather ask people for their stories and draw your own conclusions.",
         "date": "January 2024",
         "url": "blog/posts/post-seek-stories.html",
-        "thumbnail": "images/blog-thumbnails/seek-stories.jpg"
+        "thumbnail": "images/blog-thumbnails/forrest-2.jpg"
     },
     {
         "id": 2,
@@ -13,7 +13,7 @@
         "description": "Don't try to control others, rather try to understand them.",
         "date": "December 2023",
         "url": "blog/posts/post-seek-understand.html",
-        "thumbnail": "images/blog-thumbnails/seek-understand.jpg"
+        "thumbnail": "images/blog-thumbnails/xavier.webp"
     },
     {
         "id": 3,
@@ -21,7 +21,7 @@
         "description": "Lessons from Brazilian jiu jitsu about humility, asking for feedback, and the true value of mentors.",
         "date": "October 2023",
         "url": "blog/posts/post-teachers-mentors.html",
-        "thumbnail": "images/blog-thumbnails/teachers-mentors.jpg"
+        "thumbnail": "images/blog-thumbnails/alexander-the-great-greece-ss.webp"
     },
     {
         "id": 4,
@@ -29,7 +29,7 @@
         "description": "How scheduling everything to become well-rounded can work against deep obsession and success.",
         "date": "March 2023",
         "url": "blog/posts/post-too-ambitious.html",
-        "thumbnail": "images/blog-thumbnails/too-ambitious.jpg"
+        "thumbnail": "images/blog-thumbnails/bill_warren.webp"
     },
     {
         "id": 5,
@@ -37,7 +37,7 @@
         "description": "If you aim to optimize for energy, the rest will follow.",
         "date": "November 2022",
         "url": "blog/posts/post-energy-time-money.html",
-        "thumbnail": "images/blog-thumbnails/energy-time-money.jpg"
+        "thumbnail": "images/blog-thumbnails/oppenheimer.jpg"
     },
     {
         "id": 6,
@@ -45,6 +45,22 @@
         "description": "Listen to your inner voice when you think there is a more efficient way to do something.",
         "date": "July 2021",
         "url": "blog/posts/post-phd-advice.html",
-        "thumbnail": "images/blog-thumbnails/phd-advice.jpg"
+        "thumbnail": "images/blog-thumbnails/antmanbig.webp"
+    },
+    {
+        "id": 7,
+        "title": "DIY Radio Alarm for Your Mac",
+        "description": "A step-by-step guide to wake up to your favorite radio station on your Mac using SleepWatcher and Chrome.",
+        "date": "March 2020",
+        "url": "blog/posts/post-mac-radio-alarm.html",
+        "thumbnail": "images/blog-thumbnails/mac-alarm.png"
+    },
+    {
+        "id": 8,
+        "title": "Gmail: Controlling the day upon which you receive emails from a specific sender",
+        "description": "How to automatically snooze emails from specific senders until a day of your choosing using Gmail filters and labels.",
+        "date": "August 2019",
+        "url": "blog/posts/post-gmail-snooze.html",
+        "thumbnail": "images/blog-thumbnails/gmail.png"
     }
 ]
