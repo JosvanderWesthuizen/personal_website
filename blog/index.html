@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Jos van der Westhuizen</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .blog-container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .blog-header {
+            margin-bottom: 3rem;
+        }
+
+        .blog-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Jos van der Westhuizen</h1>
+        <nav>
+            <button class="theme-toggle" onclick="toggleTheme()">
+                <span id="theme-icon">🌙 Dark</span>
+            </button>
+        </nav>
+    </header>
+
+    <div class="blog-container">
+        <a href="../index.html" class="back-link">← Back to Home</a>
+
+        <div class="blog-header">
+            <h1 class="blog-title">Blog</h1>
+        </div>
+
+        <!-- Blog posts will be dynamically loaded from posts.json via JavaScript -->
+        <div class="blog-posts" id="blog-posts">
+            <!-- Fallback content if JavaScript is disabled -->
+            <noscript>
+                <p style="color: var(--text-secondary);">Please enable JavaScript to view blog posts.</p>
+            </noscript>
+        </div>
+    </div>
+
+    <!-- Footer spacing -->
+    <div style="height: 4rem;"></div>
+
+    <!-- JavaScript -->
+    <script>
+        // Theme toggle functionality
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.classList.contains('dark') ? 'dark' : 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            html.classList.remove(currentTheme);
+            html.classList.add(newTheme);
+
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            const icon = document.getElementById('theme-icon');
+            if (icon) {
+                icon.textContent = theme === 'dark' ? '🌙 Dark' : '☀️ Light';
+            }
+        }
+
+        // Load saved theme on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.classList.remove('light', 'dark');
+            document.documentElement.classList.add(savedTheme);
+            updateThemeIcon(savedTheme);
+        });
+
+        // Load and display all blog posts
+        async function loadBlogPosts() {
+            try {
+                const response = await fetch('/blog/posts.json');
+                const posts = await response.json();
+                const container = document.getElementById('blog-posts');
+
+                if (posts.length === 0) {
+                    container.innerHTML = '<p style="color: var(--text-secondary);">No blog posts yet.</p>';
+                    return;
+                }
+
+                container.innerHTML = posts.map(post => `
+                    <a href="../${post.url}" class="blog-card">
+                        <div class="blog-thumbnail">
+                            ${post.thumbnail ?
+                                `<img src="../${post.thumbnail}" alt="${post.title}">` :
+                                'Image'
+                            }
+                        </div>
+                        <div class="blog-content">
+                            <h3 class="blog-title">${post.title}</h3>
+                            <p class="blog-description">${post.description}</p>
+                            <div class="blog-date">${post.date}</div>
+                        </div>
+                    </a>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading blog posts:', error);
+                document.getElementById('blog-posts').innerHTML =
+                    '<p style="color: var(--text-secondary);">Failed to load blog posts.</p>';
+            }
+        }
+
+        // Load posts when page is ready
+        window.addEventListener('DOMContentLoaded', loadBlogPosts);
+    </script>
+
+    <!-- GoatCounter Analytics -->
+    <script data-goatcounter="https://jos.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

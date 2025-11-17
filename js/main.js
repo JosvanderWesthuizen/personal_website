@@ -39,7 +39,10 @@ async function loadBlogPosts() {
 
         if (!blogContainer) return;
 
-        blogContainer.innerHTML = posts.map(post => `
+        // Show only the 5 most recent posts on the homepage
+        const recentPosts = posts.slice(0, 5);
+
+        blogContainer.innerHTML = recentPosts.map(post => `
             <a href="${post.url}" class="blog-card">
                 <div class="blog-thumbnail">
                     ${post.thumbnail ?
