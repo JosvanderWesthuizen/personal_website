@@ -33,7 +33,7 @@ function loadTheme() {
 // Load blog posts from JSON
 async function loadBlogPosts() {
     try {
-        const response = await fetch('blog/posts.json');
+        const response = await fetch('./blog/posts.json');
         const posts = await response.json();
         const blogContainer = document.getElementById('blog-posts');
 

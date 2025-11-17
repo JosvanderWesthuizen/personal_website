@@ -1,42 +1,50 @@
 [
     {
         "id": 1,
-        "title": "Understanding Deep Learning Architectures",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
-        "date": "November 2024",
-        "url": "blog/posts/post-1-deep-learning.html",
-        "thumbnail": "images/blog-thumbnails/post-1.jpg"
+        "title": "Seek Stories Not Advice",
+        "description": "Most advice is too generic to be helpful to you. Rather ask people for their stories and draw your own conclusions.",
+        "date": "January 2024",
+        "url": "blog/posts/post-seek-stories.html",
+        "thumbnail": "images/blog-thumbnails/seek-stories.jpg"
     },
     {
         "id": 2,
-        "title": "Advances in Natural Language Processing",
-        "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.",
-        "date": "October 2024",
-        "url": "blog/posts/post-2-nlp.html",
-        "thumbnail": "images/blog-thumbnails/post-2.jpg"
+        "title": "Seek to understand not to control",
+        "description": "Don't try to control others, rather try to understand them.",
+        "date": "December 2023",
+        "url": "blog/posts/post-seek-understand.html",
+        "thumbnail": "images/blog-thumbnails/seek-understand.jpg"
     },
     {
         "id": 3,
-        "title": "Optimizing Neural Networks for Production",
-        "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo.",
-        "date": "September 2024",
-        "url": "blog/posts/post-3-neural-nets.html",
-        "thumbnail": "images/blog-thumbnails/post-3.jpg"
+        "title": "Teachers, Mentors, and Aristocrats",
+        "description": "Lessons from Brazilian jiu jitsu about humility, asking for feedback, and the true value of mentors.",
+        "date": "October 2023",
+        "url": "blog/posts/post-teachers-mentors.html",
+        "thumbnail": "images/blog-thumbnails/teachers-mentors.jpg"
     },
     {
         "id": 4,
-        "title": "Reinforcement Learning in Real-World Applications",
-        "description": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem.",
-        "date": "August 2024",
-        "url": "blog/posts/post-4-reinforcement-learning.html",
-        "thumbnail": "images/blog-thumbnails/post-4.jpg"
+        "title": "When being too ambitious is bad for you",
+        "description": "How scheduling everything to become well-rounded can work against deep obsession and success.",
+        "date": "March 2023",
+        "url": "blog/posts/post-too-ambitious.html",
+        "thumbnail": "images/blog-thumbnails/too-ambitious.jpg"
     },
     {
         "id": 5,
-        "title": "The Future of AI Research",
-        "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.",
-        "date": "July 2024",
-        "url": "blog/posts/post-5-future-ai.html",
-        "thumbnail": "images/blog-thumbnails/post-5.jpg"
+        "title": "Energy Time Money",
+        "description": "If you aim to optimize for energy, the rest will follow.",
+        "date": "November 2022",
+        "url": "blog/posts/post-energy-time-money.html",
+        "thumbnail": "images/blog-thumbnails/energy-time-money.jpg"
+    },
+    {
+        "id": 6,
+        "title": "What I would do differently if I did a PhD again",
+        "description": "Listen to your inner voice when you think there is a more efficient way to do something.",
+        "date": "July 2021",
+        "url": "blog/posts/post-phd-advice.html",
+        "thumbnail": "images/blog-thumbnails/phd-advice.jpg"
     }
 ]
