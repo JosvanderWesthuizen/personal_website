@@ -45,13 +45,23 @@
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
-            color: #94a3b8;
+            color: #4ade80;
             font-size: 20px;
             pointer-events: none;
+            animation: flash 2s ease-in-out infinite;
         }
 
         .instructions.hidden {
             display: none;
+        }
+
+        @keyframes flash {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.3;
+            }
         }
     </style>
 </head>
@@ -61,7 +71,7 @@
         <div id="score">Score: 0</div>
     </div>
     <div class="instructions" id="instructions">
-        Click anywhere to start • Use arrow keys or WASD to move
+        [Click anywhere to start • Use arrow keys or WASD to move]
     </div>
     <script src="game.js"></script>
 </body>
