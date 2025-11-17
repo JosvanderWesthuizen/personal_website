@@ -118,6 +118,12 @@ function drawCollectibles() {
             collectibles.splice(index, 1);
             score += 10;
             scoreElement.textContent = `Score: ${score}`;
+            
+            // Add collect effect
+            scoreElement.classList.add('collect-effect');
+            setTimeout(() => {
+                scoreElement.classList.remove('collect-effect');
+            }, 200);
         }
 
         // Remove if off screen
@@ -142,7 +148,7 @@ function updatePlayer() {
 // Game loop
 function gameLoop(timestamp) {
     // Clear canvas
-    ctx.fillStyle = 'rgba(15, 23, 42, 0.1)';
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     drawStars();
@@ -186,11 +192,27 @@ function updatePlayerMovement() {
     if (keys['ArrowDown'] || keys['s'] || keys['S']) player.dy = player.speed;
 }
 
-// Start game on click
-canvas.addEventListener('click', () => {
+// Reset game function
+function resetGame() {
+    gameStarted = false;
+    score = 0;
+    scoreElement.textContent = 'Score: 0';
+    collectibles = [];
+    player.x = canvas.width / 2;
+    player.y = canvas.height / 2;
+    player.dx = 0;
+    player.dy = 0;
+    instructionsElement.classList.remove('hidden');
+    instructionsElement.textContent = 'Click anywhere to start • Use arrow keys or WASD to move';
+}
+
+// Start game on first click, reset on subsequent clicks
+document.addEventListener('click', (e) => {
     if (!gameStarted) {
         gameStarted = true;
         instructionsElement.classList.add('hidden');
+    } else {
+        resetGame();
     }
 });
 
