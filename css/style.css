@@ -122,7 +122,7 @@ nav {
     justify-content: center;
     position: relative;
     overflow: hidden;
-    margin-bottom: -75px; /* Allow profile image to overlap */
+    margin-bottom: 0; /* No margin needed, profile will be absolutely positioned */
 }
 
 .banner-section iframe {
@@ -145,7 +145,10 @@ nav {
 .profile-container {
     display: flex;
     justify-content: center;
-    position: relative;
+    position: absolute;
+    top: 225px; /* Positioned to overlap the game section */
+    left: 0;
+    right: 0;
     z-index: 10;
     margin-bottom: 2rem;
 }
@@ -154,8 +157,8 @@ nav {
     width: 250px;
     height: 250px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
-    border: 6px solid var(--bg-primary);
+    background: var(--bg-primary);
+    border: 25px solid var(--bg-primary); /* Thick border matching main website background */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -405,12 +408,16 @@ h2 {
 @media (max-width: 768px) {
     .banner-section {
         height: 250px;
-        margin-bottom: -50px;
+    }
+
+    .profile-container {
+        top: 160px; /* Adjust position for smaller screens */
     }
 
     .profile-picture {
         width: 180px;
         height: 180px;
+        border: 20px solid var(--bg-primary); /* Slightly thinner border for mobile */
     }
 
     .section-header {
