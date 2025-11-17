@@ -59,10 +59,27 @@ async function loadBlogPosts() {
     }
 }
 
+// Sticky Header Scroll Effect
+function handleHeaderScroll() {
+    const header = document.querySelector('header');
+    const scrollThreshold = 50; // Pixels scrolled before effect triggers
+
+    if (window.scrollY > scrollThreshold) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+}
+
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
     loadTheme();
     loadBlogPosts();
+
+    // Add scroll event listener for sticky header effect
+    window.addEventListener('scroll', handleHeaderScroll);
+    // Check initial scroll position
+    handleHeaderScroll();
 
     // Add smooth scroll behavior
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
