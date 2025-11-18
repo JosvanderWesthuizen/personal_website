@@ -262,6 +262,28 @@ h2 {
     fill: currentColor;
 }
 
+.social-icons-row {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.social-link.icon-only {
+    padding: 0.5rem;
+    border-radius: 50%;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.social-link.icon-only:hover {
+    background: var(--card-hover);
+    transform: translateY(-2px);
+}
+
 /* Recorded Talks */
 .talks-container {
     display: flex;
